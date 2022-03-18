@@ -53,22 +53,21 @@ function handleSubmit () {
     // Set newTask.task as the user input
     newTask.task = $('#taskInput').val()
     console.log(newTask);
+    addNewTask(newTask);
 }
 
 
 // Adds a new task to the database
 function addNewTask (newTask) {
-    function addBook(bookToAdd) {
         $.ajax({
           type: 'POST',
           url: '/todo',
           data: newTask,
         }).then(function (response) {
           console.log('Response from server.', response);
-          refreshBooks();
+          getToDoList();
         }).catch(function (error) {
           console.log('Error in POST', error)
           alert('Unable to add task at this time. Please try again later.');
         });
       }
-}
