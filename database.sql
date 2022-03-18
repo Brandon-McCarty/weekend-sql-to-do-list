@@ -3,3 +3,7 @@ CREATE TABLE "todo" (
 	"task" VARCHAR (255),
 	"status" BOOLEAN DEFAULT FALSE
 	);
+
+INSERT INTO "todo" (
+	"task"
+) VALUES ('clean room'), ('water plants'), ('walk the dog'); 
