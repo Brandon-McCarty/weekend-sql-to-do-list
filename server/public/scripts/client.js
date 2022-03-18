@@ -5,12 +5,11 @@ function handleReady() {
     // Show tasks on page load
     getToDoList();
     addClickHandlers();
-
 }; // end handleReady
 
-function addClickHandlers () {
+function addClickHandlers() {
     $('#addTaskBtn').on('click', handleSubmit)
-}
+}; // end addClickHandlers
 
 // GET /toDo
 function getToDoList() {
@@ -47,27 +46,28 @@ function renderToDoList(toDoList) {
     }
 }; // End renderToDoList
 
-function handleSubmit () {
+function handleSubmit() {
     console.log('Submit Clicked');
     let newTask = {};
     // Set newTask.task as the user input
     newTask.task = $('#taskInput').val()
     console.log(newTask);
     addNewTask(newTask);
-}
+} // end handleSubmit
 
 
-// Adds a new task to the database
-function addNewTask (newTask) {
-        $.ajax({
-          type: 'POST',
-          url: '/todo',
-          data: newTask,
-        }).then(function (response) {
-          console.log('Response from server.', response);
-          getToDoList();
-        }).catch(function (error) {
-          console.log('Error in POST', error)
-          alert('Unable to add task at this time. Please try again later.');
-        });
-      }
+// POSTS a new task to the database
+function addNewTask(newTask) {
+    $.ajax({
+        type: 'POST',
+        url: '/todo',
+        data: newTask,
+    }).then(function (response) {
+        console.log('Response from server.', response);
+        // Refresh DOM after adding new task
+        getToDoList();
+    }).catch(function (error) {
+        console.log('Error in POST', error)
+        alert('Unable to add task at this time. Please try again later.');
+    });
+}; // end addNewTask
