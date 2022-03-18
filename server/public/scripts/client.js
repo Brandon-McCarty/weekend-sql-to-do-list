@@ -4,8 +4,13 @@ function handleReady() {
     console.log('JQ Loaded');
     // Show tasks on page load
     getToDoList();
+    addClickHandlers();
 
 }; // end handleReady
+
+function addClickHandlers () {
+    $('#addTaskBtn').on('click', handleSubmit)
+}
 
 // GET /toDo
 function getToDoList() {
@@ -41,3 +46,26 @@ function renderToDoList(toDoList) {
         $('#toDoList').append(row);
     }
 }; // End renderToDoList
+
+function handleSubmit () {
+    console.log('Submit Clicked');
+    
+}
+
+
+// Adds a new task to the database
+function addNewTask (newTask) {
+    function addBook(bookToAdd) {
+        $.ajax({
+          type: 'POST',
+          url: '/todo',
+          data: newTask,
+        }).then(function (response) {
+          console.log('Response from server.', response);
+          refreshBooks();
+        }).catch(function (error) {
+          console.log('Error in POST', error)
+          alert('Unable to add task at this time. Please try again later.');
+        });
+      }
+}
