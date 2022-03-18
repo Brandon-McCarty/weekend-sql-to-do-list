@@ -49,7 +49,10 @@ function renderToDoList(toDoList) {
 
 function handleSubmit () {
     console.log('Submit Clicked');
-    
+    let newTask = {};
+    // Set newTask.task as the user input
+    newTask.task = $('#taskInput').val()
+    console.log(newTask);
 }
 
 
