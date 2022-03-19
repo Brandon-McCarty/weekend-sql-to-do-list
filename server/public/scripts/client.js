@@ -9,6 +9,7 @@ function handleReady() {
 
 function addClickHandlers() {
     $('#addTaskBtn').on('click', handleSubmit)
+    $('#toDoList').on('click', '.markCompleteBtn', changeCompleteStatus)
 }; // end addClickHandlers
 
 // GET /toDo
@@ -51,6 +52,7 @@ function handleSubmit() {
     let newTask = {};
     // Set newTask.task as the user input
     newTask.task = $('#taskInput').val()
+    // newTask.status = false;
     console.log(newTask);
     addNewTask(newTask);
 } // end handleSubmit
@@ -71,3 +73,20 @@ function addNewTask(newTask) {
         alert('Unable to add task at this time. Please try again later.');
     });
 }; // end addNewTask
+
+// Toggle the status of a task completion
+function changeCompleteStatus() {
+    let task = $(this).closest('tr').data('task');
+    console.log('Changing completed status...', task.id);
+
+    $.ajax({
+        url: `/todo/${task.id}`,
+        method: 'PUT',
+        // changing the complete status
+    }).then(function (response) {
+        console.log('Updated');
+        getToDoList();
+    }).catch(function (err) {
+        console.log(err);
+    })
+}; // end changeCompleteStatus

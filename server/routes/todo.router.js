@@ -7,7 +7,7 @@ const pool = require('../modules/pool.js');
 
 // GET ROUTE
 toDoRouter.get('/', (req, res) => {
-    let queryText = 'SELECT * FROM "todo" ORDER BY "status" ASC;';
+    let queryText = 'SELECT * FROM "todo" ORDER BY "id" ASC;';
     pool.query(queryText).then(result => {
         // Sends back the results in an object
         res.send(result.rows);
@@ -39,5 +39,24 @@ toDoRouter.post('/', (req, res) => {
             res.sendStatus(500);
         });
 }); // end POST
+
+toDoRouter.put('/:id', (req, res) => {
+    let id = req.params.id;
+    console.log('Updating completion status:', id);
+  
+    let queryText = `UPDATE "todo"
+    SET "status" = NOT "status"
+    Where "id" = $1;`;
+
+    const values = [id];
+  
+    pool.query(queryText, values)
+      .then(result => {
+        res.sendStatus(200);
+      }).catch(err => {
+        console.log(err);
+        res.sendStatus(500);
+      })
+  });
 
 module.exports = toDoRouter;
