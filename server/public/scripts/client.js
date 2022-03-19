@@ -111,18 +111,20 @@ function deleteTask() {
     let task = $(this).closest('tr').data('task');
     console.log('CLICKED DELETE', task.id);
     console.log(task);
-  
+
     let id = task.id;
     // console.log(id);
-  
+
     $.ajax({
-      url: `/todo/${id}`,
-      method: 'DELETE'
+        url: `/todo/${id}`,
+        method: 'DELETE'
     }).then(function (response) {
-      console.log('Deleted');
-      getToDoList();
+        console.log('Deleted');
+        getToDoList();
     }).catch(function (err) {
-      console.log(err);
+        console.log(err);
     })
-  
-  } // end deleteTask
+
+} // end deleteTask
+
+console.log('test');
