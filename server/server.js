@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000;
-const toDoRouter = require('./routes/toDo.router')
+const toDoRouter = require('./routes/todo.router')
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
