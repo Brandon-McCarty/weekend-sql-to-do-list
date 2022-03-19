@@ -37,7 +37,7 @@ function renderToDoList(toDoList) {
             row = $(`
         <tr>
           <td>${task.task}</td>
-          <td>${task.status}</td>
+          <td>Incomplete</td>
           <td><button class="markCompleteBtn">Mark As Complete</button></td>
           <td><button class="deleteBtn">DELETE</button></td>     
         </tr>
@@ -47,7 +47,7 @@ function renderToDoList(toDoList) {
             row = $(`
         <tr class="complete">
           <td>${task.task}</td>
-          <td>${task.status}</td>
+          <td>Complete</td>
           <td><button class="markCompleteBtn">Mark As Complete</button></td>
           <td><button class="deleteBtn">DELETE</button></td>     
         </tr>
