@@ -21,6 +21,7 @@ function getToDoList() {
     }).then(function (response) {
         console.log(response);
         renderToDoList(response);
+        $('input').val('')
     }).catch(function (error) {
         console.log('error in GET', error);
     });
