@@ -114,14 +114,14 @@ function deleteTask() {
     let id = task.id;
     // console.log(id);
   
-//     $.ajax({
-//       url: `/books/${id}`,
-//       method: 'DELETE'
-//     }).then(function (response) {
-//       console.log('Deleted');
-//       refreshBooks();
-//     }).catch(function (err) {
-//       console.log(err);
-//     })
+    $.ajax({
+      url: `/todo/${id}`,
+      method: 'DELETE'
+    }).then(function (response) {
+      console.log('Deleted');
+      getToDoList();
+    }).catch(function (err) {
+      console.log(err);
+    })
   
   } // end deleteTask
