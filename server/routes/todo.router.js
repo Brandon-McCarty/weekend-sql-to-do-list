@@ -57,6 +57,30 @@ toDoRouter.put('/:id', (req, res) => {
         console.log(err);
         res.sendStatus(500);
       })
-  });
+  }); // end PUT
+
+  // Delete
+  toDoRouter.delete('/:id', (req, res) => {
+    // grab the specific id of the book
+    let id = req.params.id;
+    console.log('Need to delete:', id);
+    // res.sendStatus(200);
+  
+    const queryText = `
+          DELETE FROM "todo"
+          WHERE "id" = $1;
+      `;
+    // Sanitize the data
+    values = [id];
+  
+    pool.query(queryText, values)
+      .then(result => {
+        res.sendStatus(204);
+      }).catch(err => {
+        console.log(err);
+        res.sendStatus(500);
+      })
+  
+  }); // end delete
 
 module.exports = toDoRouter;

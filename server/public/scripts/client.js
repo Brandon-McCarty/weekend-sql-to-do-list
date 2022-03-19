@@ -8,8 +8,9 @@ function handleReady() {
 }; // end handleReady
 
 function addClickHandlers() {
-    $('#addTaskBtn').on('click', handleSubmit)
-    $('#toDoList').on('click', '.markCompleteBtn', changeCompleteStatus)
+    $('#addTaskBtn').on('click', handleSubmit);
+    $('#toDoList').on('click', '.markCompleteBtn', changeCompleteStatus);
+    $('#toDoList').on('click', '.deleteBtn', deleteTask);
 }; // end addClickHandlers
 
 // GET /toDo
@@ -20,6 +21,7 @@ function getToDoList() {
     }).then(function (response) {
         console.log(response);
         renderToDoList(response);
+        $('input').val('')
     }).catch(function (error) {
         console.log('error in GET', error);
     });
@@ -38,18 +40,18 @@ function renderToDoList(toDoList) {
         <tr>
           <td>${task.task}</td>
           <td>Incomplete</td>
-          <td><button class="markCompleteBtn">Mark As Complete</button></td>
-          <td><button class="deleteBtn">DELETE</button></td>     
+          <td><button class="markCompleteBtn btn btn-success">Mark As Complete</button></td>
+          <td><buttontype="button" class="btn btn-danger deleteBtn">DELETE</buttontype=></td>     
         </tr>
       `)
             row.data('task', task);
         } else {
             row = $(`
-        <tr class="complete">
-          <td>${task.task}</td>
+        <tr class="table-success">
+          <td class="complete">${task.task}</td>
           <td>Complete</td>
-          <td><button class="markCompleteBtn">Mark As Complete</button></td>
-          <td><button class="deleteBtn">DELETE</button></td>     
+          <td><button class="markCompleteBtn btn btn-danger">Mark As Incomplete</button></td>
+          <td><button type="button" class="btn btn-danger deleteBtn" >DELETE</button></td>     
         </tr>
       `)
             row.data('task', task);
@@ -104,3 +106,23 @@ function changeCompleteStatus() {
         console.log(err);
     })
 }; // end changeCompleteStatus
+
+function deleteTask() {
+    let task = $(this).closest('tr').data('task');
+    console.log('CLICKED DELETE', task.id);
+    console.log(task);
+  
+    let id = task.id;
+    // console.log(id);
+  
+    $.ajax({
+      url: `/todo/${id}`,
+      method: 'DELETE'
+    }).then(function (response) {
+      console.log('Deleted');
+      getToDoList();
+    }).catch(function (err) {
+      console.log(err);
+    })
+  
+  } // end deleteTask
