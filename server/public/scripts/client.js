@@ -5,6 +5,7 @@ function handleReady() {
     // Show tasks on page load
     getToDoList();
     addClickHandlers();
+    
 }; // end handleReady
 
 function addClickHandlers() {
@@ -115,18 +116,31 @@ function deleteTask() {
     console.log(task);
 
     let id = task.id;
-    // console.log(id);
 
-    $.ajax({
-        url: `/todo/${id}`,
-        method: 'DELETE'
-    }).then(function (response) {
-        console.log('Deleted');
-        getToDoList();
-    }).catch(function (err) {
-        console.log(err);
-    })
-
+    swal({
+        title: "Are you sure you wish to delete this task?",
+        text: "This action is permanent.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Task has been successfully deleted.", {
+            icon: "success",
+          });
+          $.ajax({
+            url: `/todo/${id}`,
+            method: 'DELETE'
+        }).then(function (response) {
+            console.log('Deleted');
+            getToDoList();
+        }).catch(function (err) {
+            console.log(err);
+        })
+        } else {
+          swal("Delete cancelled.");
+        }
+      });
 } // end deleteTask
 
-console.log('test');
