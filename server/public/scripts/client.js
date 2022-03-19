@@ -32,7 +32,9 @@ function renderToDoList(toDoList) {
     // loop through the object sent by database
     for (let i = 0; i < toDoList.length; i += 1) {
         let task = toDoList[i];
-        let row = $(`
+        let row;
+        if (task.status === false) {
+            row = $(`
         <tr>
           <td>${task.task}</td>
           <td>${task.status}</td>
@@ -40,8 +42,20 @@ function renderToDoList(toDoList) {
           <td><button class="deleteBtn">DELETE</button></td>     
         </tr>
       `)
+            row.data('task', task);
+        } else {
+            row = $(`
+        <tr class="complete">
+          <td>${task.task}</td>
+          <td>${task.status}</td>
+          <td><button class="markCompleteBtn">Mark As Complete</button></td>
+          <td><button class="deleteBtn">DELETE</button></td>     
+        </tr>
+      `)
+            row.data('task', task);
+        }
 
-        row.data('task', task);
+        // row.data('task', task);
         // For each task, append a new row to our table
         $('#toDoList').append(row);
     }
