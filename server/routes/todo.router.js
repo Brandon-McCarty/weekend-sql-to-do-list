@@ -1,6 +1,7 @@
 const express = require('express');
 // Set up /toDo router
 const toDoRouter = express.Router();
+const moment = require('moment');
 
 const pool = require('../modules/pool.js');
 
@@ -42,13 +43,14 @@ toDoRouter.post('/', (req, res) => {
 
 toDoRouter.put('/:id', (req, res) => {
     let id = req.params.id;
+    let date = moment().format('MM-DD-YYYY');
     console.log('Updating completion status:', id);
 
     let queryText = `UPDATE "todo"
-    SET "status" = NOT "status"
+    SET "status" = NOT "status", "date_completed" = $2
     Where "id" = $1;`;
 
-    const values = [id];
+    const values = [id, date];
 
     pool.query(queryText, values)
         .then(result => {
