@@ -40,6 +40,7 @@ function renderToDoList(toDoList) {
         <tr>
           <td>${task.task}</td>
           <td>Incomplete</td>
+          <td></td>
           <td><button class="markCompleteBtn btn btn-success">Mark As Complete</button></td>
           <td><buttontype="button" class="btn btn-danger deleteBtn">DELETE</buttontype=></td>     
         </tr>
@@ -50,6 +51,7 @@ function renderToDoList(toDoList) {
         <tr class="table-success">
           <td class="complete">${task.task}</td>
           <td>Complete</td>
+          <td>${task.date_completed}</td>
           <td><button class="markCompleteBtn btn btn-danger">Mark As Incomplete</button></td>
           <td><button type="button" class="btn btn-danger deleteBtn" >DELETE</button></td>     
         </tr>
