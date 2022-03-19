@@ -5,7 +5,7 @@ function handleReady() {
     // Show tasks on page load
     getToDoList();
     addClickHandlers();
-    
+
 }; // end handleReady
 
 function addClickHandlers() {
@@ -117,30 +117,32 @@ function deleteTask() {
 
     let id = task.id;
 
+    // Prompt to confirm delete action
     swal({
         title: "Are you sure you wish to delete this task?",
         text: "This action is permanent.",
         icon: "warning",
         buttons: true,
         dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          swal("Task has been successfully deleted.", {
-            icon: "success",
-          });
-          $.ajax({
-            url: `/todo/${id}`,
-            method: 'DELETE'
-        }).then(function (response) {
-            console.log('Deleted');
-            getToDoList();
-        }).catch(function (err) {
-            console.log(err);
-        })
-        } else {
-          swal("Delete cancelled.");
-        }
-      });
+    }) // If user confirms, task will be deleted
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Task has been successfully deleted.", {
+                    icon: "success",
+                });
+                $.ajax({
+                    url: `/todo/${id}`,
+                    method: 'DELETE'
+                }).then(function (response) {
+                    console.log('Deleted');
+                    getToDoList();
+                }).catch(function (err) {
+                    console.log(err);
+                })
+                // if user declines, task will not be deleted    
+            } else {
+                swal("Delete cancelled.");
+            }
+        });
 } // end deleteTask
 
