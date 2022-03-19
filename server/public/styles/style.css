@@ -1,3 +1,14 @@
 .complete {
-    text-decoration: line-through
+    text-decoration: line-through;
+    color: green;
+}
+
+body {
+    background-color: aqua;
+}
+
+table {
+    border: 1px solid;
+    width: 100%;
+    background-color: lightgray;
 }
