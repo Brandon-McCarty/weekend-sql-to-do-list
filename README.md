@@ -19,7 +19,7 @@ To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.he
 
 ## Screen Shot
 
-![To-Do Screenshot](Screen Shot 2022-03-19 at 11.19.42 AM.png?raw=true)
+<img width="1790" alt="Screen Shot 2022-03-19 at 11 19 42 AM" src="https://user-images.githubusercontent.com/96275396/159138961-1e17a49e-46aa-4bcc-8bc9-44541bfd2f66.png">
 
 ### Prerequisites
 
