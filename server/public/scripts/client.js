@@ -8,8 +8,9 @@ function handleReady() {
 }; // end handleReady
 
 function addClickHandlers() {
-    $('#addTaskBtn').on('click', handleSubmit)
-    $('#toDoList').on('click', '.markCompleteBtn', changeCompleteStatus)
+    $('#addTaskBtn').on('click', handleSubmit);
+    $('#toDoList').on('click', '.markCompleteBtn', changeCompleteStatus);
+    $('#toDoList').on('click', '.deleteBtn', deleteTask);
 }; // end addClickHandlers
 
 // GET /toDo
@@ -104,3 +105,23 @@ function changeCompleteStatus() {
         console.log(err);
     })
 }; // end changeCompleteStatus
+
+function deleteTask() {
+    let task = $(this).closest('tr').data('task');
+    console.log('CLICKED DELETE', task.id);
+    console.log(task);
+  
+    let id = task.id;
+    // console.log(id);
+  
+//     $.ajax({
+//       url: `/books/${id}`,
+//       method: 'DELETE'
+//     }).then(function (response) {
+//       console.log('Deleted');
+//       refreshBooks();
+//     }).catch(function (err) {
+//       console.log(err);
+//     })
+  
+  } // end deleteTask

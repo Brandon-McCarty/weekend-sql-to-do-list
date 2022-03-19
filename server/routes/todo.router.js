@@ -60,7 +60,7 @@ toDoRouter.put('/:id', (req, res) => {
   }); // end PUT
 
   // Delete
-  router.delete('/:id', (req, res) => {
+  toDoRouter.delete('/:id', (req, res) => {
     // grab the specific id of the book
     let id = req.params.id;
     console.log('Need to delete:', id);
