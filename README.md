@@ -15,7 +15,7 @@ _Duration: Weekend Project_
 This project is designed to be a dynamic to-do list for the user. It allows the user to input a task and stores the information in a database. The application then displays the tasks, the completion status, and the completion date (shown upon being marked complete). The user is able to toggle the completion status with the click of a button or delete the task with a click followed by a confirmation prompt. Each task entered into the application is defaulted to be marked as incomplete as the purpose is to list tasks still needing to be completed. All of the pieces working together make an easy to use and functional to-do list.
 
 
-To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.heroku.com)
+To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](https://pacific-mesa-28026.herokuapp.com/)
 
 ## Screen Shot
 
